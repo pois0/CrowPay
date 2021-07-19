@@ -1,12 +1,50 @@
 <resources>
-    <string name="app_name">Crow Pay</string>
-    <string name="action_settings">Settings</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
+    <string name="app_name" translatable="false">Crow Pay</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_home">Home</string>
+    <string name="title_history">History</string>
+    <string name="title_users">Users</string>
+    <string name="history_fragment_balance_tab_title">Balances</string>
+    <string name="history_fragment_repayment_tab_title">Repayments</string>
+    <string name="deadline_title">Deadline:</string>
+    <string name="title_settings">Settings</string>
+    <string name="fragment_home_action_menu">Action Menu</string>
+    <string name="fragment_home_new_balance">Borrow</string>
+    <string name="fragment_home_new_repayment">Repay</string>
+    <string name="fragment_home_receive">Receive</string>
+    <string name="amount_input_hint">Amount</string>
+    <string name="send_button">Send</string>
+    <string name="created_at_input_hint">Borrowed on</string>
+    <string name="deadline_input_hint">Deadline</string>
+    <string name="amount_error">Amount must be positive number</string>
+    <string name="deadline_error">Deadline must be after the date borrow on</string>
+    <string name="remark_input_hint">Remark</string>
+    <string name="fail_to_start_nearby">Failed to search users</string>
+    <string name="confirm_other_party">Communicate with %1$s?</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="permission_excuse">Some permissions is necessary to communicate with other devices</string>
+    <string name="communicating">In communication…</string>
+    <string name="set_your_name">Write your name</string>
+    <string name="name">Name</string>
+    <string name="name_error">Name must not be blank</string>
+    <string name="waiting">Waiting an application…</string>
+    <string name="communication_error_occurred">Communication error was occurred</string>
+    <string name="rejected_application">Your application was rejected</string>
+    <string name="error_occurred">An error was occurred</string>
+    <string name="inconsistency_error">Inconsistency error was occurred</string>
+    <string name="confirm_balance">Do you accept this application?</string>
+    <string name="other_party_name">Other party</string>
+    <string name="reject_button">Reject</string>
+    <string name="accept_button">Accept</string>
+    <string name="complete_balance">You loaned money with the following details</string>
+    <string name="sent_balance">You borrowed money with the following details</string>
+    <string name="borrowing">(B)</string>
+    <string name="lending">(L)</string>
+    <string name="confirm_send_repayment">Do you send the following repayment request?</string>
+    <string name="amount_sum">Total amount</string>
+    <string name="detail">Details:</string>
+    <string name="sent_repayment">You repaid with the following details</string>
+    <string name="complete_repayment">You received the following repayment</string>
+    <string name="balance_at_least_one">Select at least one balance</string>
 </resources>

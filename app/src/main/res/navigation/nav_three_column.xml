@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        app:startDestination="@id/view_home_fragment"
+        android:id="@+id/nav_three_column">
+
+    <fragment
+            android:id="@+id/view_home_fragment"
+            android:name="jp.pois.crowpay.fragments.main.HomeFragment"
+            tools:layout="@layout/fragment_home"/>
+
+    <fragment
+            android:id="@+id/view_history_fragment"
+            android:name="jp.pois.crowpay.fragments.main.HistoryFragment"
+            tools:layout="@layout/fragment_history"/>
+
+    <fragment
+            android:id="@+id/view_user_fragment"
+            android:name="jp.pois.crowpay.fragments.main.UserListFragment"
+            tools:layout="@layout/fragment_user_list"/>
+
+    <fragment
+            android:id="@+id/view_settings_fragment"
+            android:name="jp.pois.crowpay.fragments.main.SettingsFragment"
+            tools:layout="@layout/fragment_settings"/>
+</navigation>

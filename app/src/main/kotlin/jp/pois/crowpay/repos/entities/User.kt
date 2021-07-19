@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import java.io.Serializable
 import java.util.*
 
 @Entity(
@@ -17,7 +18,7 @@ data class User(
     val name: String,
     val uuid: UUID,
     @ColumnInfo(name = "customized_name") val customizedName: String? = null
-)
+) : Serializable
 
 val User.displayName: String
     get() = customizedName ?: name

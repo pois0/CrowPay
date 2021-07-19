@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="sum" type="int"/>
+        <variable name="user" type="jp.pois.crowpay.repos.entities.User"/>
+        <variable name="handler" type="jp.pois.crowpay.fragments.repayment.SenderConfirmRepaymentFragment.ClickHandler"/>
+        <import type="jp.pois.crowpay.repos.entities.UserKt"/>
+        <import type="jp.pois.crowpay.utils.StringFormatterKt"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="16dp">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/description"
+                android:text="@string/confirm_send_repayment"
+                android:textSize="20sp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+        <TableLayout
+                android:id="@+id/table_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="1"
+                android:layout_marginTop="16dp"
+                app:layout_constraintTop_toBottomOf="@id/description">
+            <TableRow>
+                <TextView
+                        android:layout_column="0"
+                        android:text="@string/other_party_name"
+                        android:textSize="20sp"
+                        android:gravity="start"/>
+                <TextView
+                        android:text="@{UserKt.getDisplayName(user)}"
+                        android:textSize="20sp"
+                        android:gravity="end"
+                        tools:text="User1"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                        android:layout_column="0"
+                        android:text="@string/amount_sum"
+                        android:textSize="20sp"
+                        android:gravity="start"/>
+                <TextView
+                        android:text="@{`￥` + StringFormatterKt.getAmountToText(sum)}"
+                        android:textSize="20sp"
+                        android:gravity="end"
+                        tools:text="￥10000"/>
+            </TableRow>
+            <TableRow>
+                <TextView
+                        android:layout_column="0"
+                        android:text="@string/detail"
+                        android:textSize="20sp"
+                        android:gravity="start"/>
+            </TableRow>
+        </TableLayout>
+
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintTop_toBottomOf="@+id/table_layout"
+                app:layout_constraintBottom_toTopOf="@+id/ok_button">
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/balance_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+        </LinearLayout>
+
+        <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel"
+                android:onClick="@{() -> handler.reject()}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.button.MaterialButton
+                android:id="@+id/ok_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/send_button"
+                android:onClick="@{() -> handler.accept()}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

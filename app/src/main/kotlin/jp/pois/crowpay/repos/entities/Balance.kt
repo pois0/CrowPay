@@ -3,7 +3,6 @@ package jp.pois.crowpay.repos.entities
 import androidx.room.*
 import androidx.room.ForeignKey.CASCADE
 import androidx.room.ForeignKey.SET_NULL
-import jp.pois.crowpay.utils.Direction
 import jp.pois.crowpay.utils.LocalDateSerializer
 import jp.pois.crowpay.utils.UUIDSerializer
 import kotlinx.serialization.Serializable
@@ -51,7 +50,10 @@ data class Balance(
 
     @Transient
     val remark: String = "",
-)
+) : java.io.Serializable
 
-inline val Balance.isRepaid: Boolean
+val Balance.isRepaid: Boolean
     get() = repaidBy != null
+
+val Balance.isDebt: Boolean
+    get() = amount < 0

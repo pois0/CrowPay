@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+                name="handler"
+                type="jp.pois.crowpay.fragments.main.HomeFragment.HomeFragmentViewHandler"/>
+    </data>
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".fragments.main.HomeFragment">
+
+            <TextView
+                    android:id="@+id/text_home"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textAlignment="center"
+                    android:textSize="20sp"
+                    android:text="TestMessage"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/receive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="24dp"
+                android:visibility="gone"
+                android:onClick="@{() -> handler.onClickReceive()}"
+                android:contentDescription="@string/fragment_home_receive"
+                app:fabSize="mini"
+                app:srcCompat="@drawable/ic_baseline_download"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/new_repayment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="24dp"
+                android:visibility="gone"
+                android:onClick="@{() -> handler.onClickNewRepayment()}"
+                app:srcCompat="@drawable/ic_baseline_reply"
+                app:fabSize="mini"
+                android:contentDescription="@string/fragment_home_new_repayment"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/new_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="24dp"
+                android:visibility="gone"
+                android:onClick="@{() -> handler.onClickNewBalance()}"
+                app:srcCompat="@drawable/ic_baseline_add"
+                app:fabSize="mini"
+                android:contentDescription="@string/fragment_home_new_balance"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floating_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="16dp"
+                android:onClick="@{() -> handler.onClickMenu()}"
+                android:contentDescription="@string/fragment_home_action_menu"
+                app:srcCompat="@drawable/ic_baseline_menu"/>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

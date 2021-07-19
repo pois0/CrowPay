@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+                name="repayment"
+                type="jp.pois.crowpay.repos.entities.RepaymentWithUser"/>
+        <variable
+                name="clickListener"
+                type="android.view.View.OnClickListener"/>
+        <import type="jp.pois.crowpay.repos.entities.BalanceKt"/>
+        <import type="jp.pois.crowpay.repos.entities.UserKt"/>
+        <import type="jp.pois.crowpay.utils.StringFormatterKt"/>
+    </data>
+    
+    <androidx.constraintlayout.widget.ConstraintLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:onClick="@{clickListener}">
+
+        <TextView
+                android:id="@+id/other_party_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{UserKt.getDisplayName(repayment.user)}"
+                android:textSize="20sp"
+                android:layout_marginStart="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="テストの相手"/>
+
+        <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{StringFormatterKt.getToText(repayment.repayment.createdAt)}"
+                android:textSize="16sp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/other_party_name"
+                tools:text="2020/04/01"/>
+
+        <TextView
+                android:id="@+id/amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{`￥` + StringFormatterKt.getAmountToText(repayment.repayment.amount)}"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                tools:text="￥100,000" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

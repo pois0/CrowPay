@@ -40,4 +40,4 @@ data class Repayment(
     @ColumnInfo(name = "created_at")
     @Serializable(with = LocalDateSerializer::class)
     val createdAt: LocalDate = LocalDate.now()
-)
+) : java.io.Serializable

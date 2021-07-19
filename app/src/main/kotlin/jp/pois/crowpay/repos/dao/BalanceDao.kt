@@ -1,9 +1,6 @@
 package jp.pois.crowpay.repos.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Transaction
+import androidx.room.*
 import jp.pois.crowpay.repos.entities.*
 import kotlinx.coroutines.flow.Flow
 import java.util.*
@@ -21,6 +18,9 @@ interface BalanceDao {
     @Query("SELECT * FROM balances WHERE other_party_id = :otherPartyId")
     fun getBalances(otherPartyId: Long): Flow<List<Balance>>
 
+    @Query("SELECT * FROM balances WHERE repaid_by IS NULL AND other_party_id = :otherPartyId")
+    fun getUnrepaidBalances(otherPartyId: Long): Flow<List<Balance>>
+
     @Query("SELECT * FROM balances WHERE repaid_by = :repaymentId")
     fun getBalancesByRepayment(repaymentId: Long): Flow<List<Balance>>
 
@@ -34,6 +34,12 @@ interface BalanceDao {
         WHERE balances.id = :id
     """)
     fun getBalance(id: Long): Flow<BalanceDetail>
+
+    @Query("SELECT * FROM balances WHERE uuid = :uuid")
+    suspend fun getBalance(uuid: UUID): Balance
+
+    @Query("SELECT SUM(amount) FROM balances WHERE repaid_by IS NULL")
+    fun getUnpaidBalanceSum(): Flow<Int>
 
     @Query("SELECT SUM(amount) FROM balances WHERE repaid_by IS NULL AND other_party_id = :otherPartyId")
     fun getUnpaidBalanceSum(otherPartyId: Long): Flow<Int>
@@ -57,6 +63,9 @@ interface BalanceDao {
         WHERE repayments.id = :id
     """)
     fun getRepayment(id: Long): Flow<RepaymentDetail>
+
+    @Query("SELECT * FROM repayments WHERE uuid = :uuid")
+    suspend fun getRepayment(uuid: UUID): Repayment
 
     @Insert
     suspend fun insertBalance(balance: Balance): Long

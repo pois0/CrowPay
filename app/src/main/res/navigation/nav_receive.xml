@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/nav_receive"
+        app:startDestination="@id/view_waiting_fragment">
+
+    <fragment
+            android:id="@+id/view_waiting_fragment"
+            android:name="jp.pois.crowpay.fragments.receive.WaitingFragment"
+            tools:layout="@layout/fragment_waiting">
+
+        <action
+                android:id="@+id/action_view_waiting_fragment_to_confirm_balance_fragment"
+                app:destination="@+id/view_confirm_balance_fragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right">
+
+            <argument
+                    android:name="balance"
+                    app:argType="jp.pois.crowpay.repos.entities.Balance"
+                    app:nullable="false"/>
+
+            <argument
+                    android:name="user"
+                    app:argType="jp.pois.crowpay.repos.entities.User"
+                    app:nullable="false"/>
+        </action>
+
+        <action
+                android:id="@+id/action_view_waiting_fragment_to_confirm_repayment_fragment"
+                app:destination="@+id/view_confirm_repayment_fragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right">
+
+            <argument
+                    android:name="repayment"
+                    app:argType="jp.pois.crowpay.data.RepaymentWithBalances"
+                    app:nullable="false"/>
+
+            <argument
+                    android:name="user"
+                    app:argType="jp.pois.crowpay.repos.entities.User"
+                    app:nullable="false"/>
+        </action>
+    </fragment>
+
+    <fragment
+            android:id="@+id/view_confirm_balance_fragment"
+            android:name="jp.pois.crowpay.fragments.receive.ConfirmBalanceFragment">
+
+        <argument
+                android:name="balance"
+                app:argType="jp.pois.crowpay.repos.entities.Balance"
+                app:nullable="false"/>
+
+        <argument
+                android:name="user"
+                app:argType="jp.pois.crowpay.repos.entities.User"
+                app:nullable="false"/>
+
+        <action
+                android:id="@+id/action_view_confirm_balance_fragment_to_communicating_fragment"
+                app:destination="@+id/view_communicating_fragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/view_confirm_repayment_fragment"
+            android:name="jp.pois.crowpay.fragments.receive.ConfirmRepaymentFragment">
+
+        <argument
+                android:name="repayment"
+                app:argType="jp.pois.crowpay.data.RepaymentWithBalances"
+                app:nullable="false"/>
+
+        <argument
+                android:name="user"
+                app:argType="jp.pois.crowpay.repos.entities.User"
+                app:nullable="false"/>
+
+        <action
+                android:id="@+id/action_view_confirm_repayment_fragment_to_communicating_fragment"
+                app:destination="@+id/view_communicating_fragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/view_communicating_fragment"
+            android:name="jp.pois.crowpay.fragments.receive.CommunicatingFragment"
+            tools:layout="@layout/fragment_communicating">
+
+        <action
+                android:id="@+id/action_view_communicating_fragment_to_complete_balance_fragment"
+                app:destination="@+id/view_complete_balance_fragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right">
+
+            <argument
+                    android:name="balance"
+                    app:argType="jp.pois.crowpay.repos.entities.Balance"
+                    app:nullable="false"/>
+
+            <argument
+                    android:name="user"
+                    app:argType="jp.pois.crowpay.repos.entities.User"
+                    app:nullable="false"/>
+        </action>
+
+        <action
+                android:id="@+id/action_view_communicating_fragment_to_complete_repayment_fragment"
+                app:destination="@+id/view_complete_repayment_fragment"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right">
+
+            <argument
+                    android:name="repayment"
+                    app:argType="jp.pois.crowpay.data.RepaymentWithBalances"
+                    app:nullable="false"/>
+
+            <argument
+                    android:name="user"
+                    app:argType="jp.pois.crowpay.repos.entities.User"
+                    app:nullable="false"/>
+        </action>
+    </fragment>
+
+    <fragment
+            android:id="@+id/view_complete_balance_fragment"
+            android:name="jp.pois.crowpay.fragments.receive.CompleteBalanceFragment">
+
+        <argument
+                android:name="balance"
+                app:argType="jp.pois.crowpay.repos.entities.Balance"
+                app:nullable="false"/>
+
+        <argument
+                android:name="user"
+                app:argType="jp.pois.crowpay.repos.entities.User"
+                app:nullable="false"/>
+    </fragment>
+
+    <fragment
+            android:id="@+id/view_complete_repayment_fragment"
+            android:name="jp.pois.crowpay.fragments.receive.CompleteRepaymentFragment">
+
+        <argument
+                android:name="repayment"
+                app:argType="jp.pois.crowpay.data.RepaymentWithBalances"
+                app:nullable="false"/>
+
+        <argument
+                android:name="user"
+                app:argType="jp.pois.crowpay.repos.entities.User"
+                app:nullable="false"/>
+    </fragment>
+</navigation>

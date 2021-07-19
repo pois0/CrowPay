@@ -1,37 +1,60 @@
 package jp.pois.crowpay
 
+import android.app.Dialog
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
+import android.util.Log
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import android.view.Menu
-import android.view.MenuItem
+import androidx.databinding.DataBindingUtil.setContentView
+import androidx.fragment.app.DialogFragment
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
+import dagger.hilt.android.AndroidEntryPoint
+import jp.pois.crowpay.databinding.ActivityMainBinding
+import jp.pois.crowpay.databinding.DialogNameConfigurationBinding
+import jp.pois.crowpay.utils.endpointIdentifier
+import jp.pois.crowpay.utils.initializeEndpointIdentifier
+import jp.pois.crowpay.utils.isEndpointIdentifierInitialized
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        setSupportActionBar(findViewById(R.id.toolbar))
+        binding = setContentView(this, R.layout.activity_main)
 
-        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                .setAction("Action", null).show()
-        }
-    }
+        val navHost = supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment
 
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.menu_main, menu)
-        return true
-    }
+        binding.bottomNavigation.setupWithNavController(navHost.navController)
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
+        if (!isEndpointIdentifierInitialized) {
+            val dialogBinding = DialogNameConfigurationBinding.inflate(layoutInflater)
+
+            AlertDialog.Builder(this)
+                .setView(dialogBinding.root)
+                .setCancelable(false)
+                .setPositiveButton(R.string.ok, null)
+                .create()
+                .apply {
+                    setOnShowListener {
+                        getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener {
+                            Log.d("DialogMainActivity", "positiveButton")
+                            val name = dialogBinding.nameInput.text?.toString()
+                            Log.d("DialogMainActivity", name.isNullOrBlank().toString())
+                            if (name.isNullOrBlank()) {
+                                dialogBinding.nameInputContainer.error = getString(R.string.name_error)
+                            } else {
+                                initializeEndpointIdentifier(name)
+                                dismiss()
+                            }
+                        }
+                    }
+                }
+                .show()
+        } else {
+            Log.d("mainActivity", endpointIdentifier.toString())
         }
     }
 }
